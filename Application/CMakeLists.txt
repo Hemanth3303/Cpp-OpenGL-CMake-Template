@@ -180,3 +180,11 @@ if(CMAKE_BUILD_TYPE STREQUAL Dist)
 		)
 	endif()
 endif()
+
+add_custom_command(
+	TARGET Application POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_directory
+		${PROJECT_SOURCE_DIR}/Application/res
+		${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/res
+	COMMENT "Copying resource folder to binary directory"
+)

@@ -1,0 +1,1 @@
+some resource needed by the project

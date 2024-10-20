@@ -1,96 +1,17 @@
 ﻿{
-	"version": 6,
+	"version": 8,
 	"cmakeMinimumRequired": {
 		"major": 3,
 		"minor": 26,
 		"patch": 0
 	},
-	"include": [
 
+	"include": [
+		"cmake/presets/windows.json",
+		"cmake/presets/linux.json"
 	],
+
 	"configurePresets": [
-		{
-			"name": "windows_base",
-			"description": "Target Windows.",
-			"hidden": true,
-			"generator": "Ninja",
-			"binaryDir": "${sourceDir}/build",
-			"installDir": "${sourceDir}/install",
-			"condition": {
-				"type": "equals",
-				"lhs": "${hostSystemName}",
-				"rhs": "Windows"
-			}
-		},
-		{
-			"name": "windows_x86-64_debug",
-			"displayName": "Windows x86-64 Debug",
-			"description": "Target Windows (64-bit). (Debug)",
-			"inherits": "windows_base",
-			"architecture": {
-				"value": "x64",
-				"strategy": "external"
-			},
-			"cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
-		},
-		{
-			"name": "windows_x86-64_release",
-			"displayName": "Windows x86-64 Release",
-			"description": "Target Windows (64-bit). (Release)",
-			"inherits": "windows_base",
-			"cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
-		},
-		{
-			"name": "windows_x86-64_dist",
-			"displayName": "Windows x86-64 Dist",
-			"description": "Target Windows (64-bit). (Distribution)",
-			"inherits": "windows_base",
-			"cacheVariables": { "CMAKE_BUILD_TYPE": "Dist" }
-		},
-		{
-			"name": "linux_base",
-			"description": "Targets Linux, also path when remote connecting to visual studio",
-			"hidden": true,
-			"generator": "Ninja",
-			"binaryDir": "${sourceDir}/build",
-			"installDir": "${sourceDir}/install",
-			"cacheVariables": {
-				"CMAKE_INSTALL_PREFIX": "${sourceDir}/install"
-			},
-			"condition": {
-				"type": "equals",
-				"lhs": "${hostSystemName}",
-				"rhs": "Linux"
-			},
-			"vendor": {
-				"microsoft.com/VisualStudioSettings/CMake/1.0": {
-					"hostOS": [ "Linux" ]
-				},
-				"microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
-					"sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
-				}
-			}
-		},
-		{
-			"name": "linux_x86-64_debug",
-			"displayName": "Linux x86-64 Debug",
-			"description": "Target Linux (64-bit). (Debug)",
-			"inherits": "linux_base",
-			"cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
-		},
-		{
-			"name": "linux_x86-64_release",
-			"displayName": "Linux x86-64 Release",
-			"description": "Target Linux (64-bit). (Release)",
-			"inherits": "linux_base",
-			"cacheVariables": { "CMAKE_BUILD_TYPE": "Release" }
-		},
-		{
-			"name": "linux_x86-64_dist",
-			"displayName": "Linux x86-64 Dist",
-			"description": "Target Linux (64-bit). (Distribution)",
-			"inherits": "linux_base",
-			"cacheVariables": { "CMAKE_BUILD_TYPE": "Dist" }
-		}
+		
 	]
 }

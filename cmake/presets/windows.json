@@ -1,0 +1,258 @@
+{
+	"version": 8,
+	"cmakeMinimumRequired": {
+		"major": 3,
+		"minor": 26,
+		"patch": 0
+	},
+
+	"include": [
+
+	],
+
+	"configurePresets": [
+		{
+			"name": "windows_base",
+			"description": "Target Windows",
+			"hidden": true,
+			"binaryDir": "${sourceDir}/build",
+			"installDir": "${sourceDir}/install",
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Windows"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_msvc_base",
+			"inherits": "windows_base",
+			"description": "Tagets Windows x86-64 using MSVC and Ninja",
+			"generator": "Ninja",
+			"hidden": true,
+			"architecture": {
+				"value": "x64",
+				"strategy": "external"
+			},
+			"vendor": {
+				"microsoft.com/VisualStudioSettings/CMake/1.0": {
+					"hostOS": [ "Windows" ]
+				}
+			}
+		},
+
+		{
+			"name": "windows_x86-64_debug_msvc",
+			"inherits": "windows_x86-64_msvc_base",
+			"description": "Tagets Windows x86-64(Debug) using MSVC and Ninja",
+			"displayName": "Windows x86-64 Debug MSVC",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Debug"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_release_msvc",
+			"inherits": "windows_x86-64_msvc_base",
+			"description": "Tagets Windows x86-64(Release) using MSVC and Ninja",
+			"displayName": "Windows x86-64 Release MSVC",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Release"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_dist_msvc",
+			"inherits": "windows_x86-64_msvc_base",
+			"description": "Tagets Windows x86-64(Distribution) using MSVC and Ninja",
+			"displayName": "Windows x86-64 Dist MSVC",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Dist"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_mingw_makefiles_base",
+			"inherits": "windows_base",
+			"description": "Tagets Windows x86-64 using MinGW-w64 and Makefiles",
+			"generator": "MinGW Makefiles",
+			"hidden": true,
+			"cacheVariables": {
+				"CMAKE_C_COMPILER": "gcc",
+				"CMAKE_CXX_COMPILER": "g++"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_debug_mingw_makefiles",
+			"inherits": "windows_x86-64_mingw_makefiles_base",
+			"description": "Tagets Windows x86-64(Debug) using MinGW-w64 and Makefiles",
+			"displayName": "Windows x86-64 Debug MinGW Makefiles",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Debug"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_release_mingw_makefiles",
+			"inherits": "windows_x86-64_mingw_makefiles_base",
+			"description": "Tagets Windows x86-64(Release) using MinGW-w64 and Makefiles",
+			"displayName": "Windows x86-64 Release MinGW Makefiles",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Release"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_dist_mingw_makefiles",
+			"inherits": "windows_x86-64_mingw_makefiles_base",
+			"description": "Tagets Windows x86-64(Distribution) using MinGW-w64 and Makefiles",
+			"displayName": "Windows x86-64 Dist MinGW Makefiles",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Dist"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_clang_makefiles_base",
+			"inherits": "windows_base",
+			"description": "Tagets Windows x86-64 using Clang and Makefiles",
+			"generator": "MinGW Makefiles",
+			"hidden": true,
+			"cacheVariables": {
+				"CMAKE_C_COMPILER": "clang",
+				"CMAKE_CXX_COMPILER": "clang++"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_debug_clang_makefiles",
+			"inherits": "windows_x86-64_clang_makefiles_base",
+			"description": "Tagets Windows x86-64(Debug) using Clang and Makefiles",
+			"displayName": "Windows x86-64 Debug Clang Makefiles",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Debug"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_release_clang_makefiles",
+			"inherits": "windows_x86-64_clang_makefiles_base",
+			"description": "Tagets Windows x86-64(Release) using Clang and Makefiles",
+			"displayName": "Windows x86-64 Release Clang Makefiles",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Release"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_dist_clang_makefiles",
+			"inherits": "windows_x86-64_clang_makefiles_base",
+			"description": "Tagets Windows x86-64(Distribution) using Clang and Makefiles",
+			"displayName": "Windows x86-64 Dist Clang Makefiles",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Dist"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_mingw_ninja_base",
+			"inherits": "windows_base",
+			"description": "Tagets Windows x86-64 using MinGW-w64 and Ninja",
+			"generator": "Ninja",
+			"hidden": true,
+			"cacheVariables": {
+				"CMAKE_C_COMPILER": "gcc",
+				"CMAKE_CXX_COMPILER": "g++"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_debug_mingw_ninja",
+			"inherits": "windows_x86-64_mingw_ninja_base",
+			"description": "Tagets Windows x86-64(Debug) using MinGW-w64 and Ninja",
+			"displayName": "Windows x86-64 Debug MinGW Ninja",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Debug"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_release_mingw_ninja",
+			"inherits": "windows_x86-64_mingw_ninja_base",
+			"description": "Tagets Windows x86-64(Release) using MinGW-w64 and Ninja",
+			"displayName": "Windows x86-64 Release MinGW Ninja",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Release"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_dist_mingw_ninja",
+			"inherits": "windows_x86-64_mingw_ninja_base",
+			"description": "Tagets Windows x86-64(Distribution) using MinGW-w64 and Ninja",
+			"displayName": "Windows x86-64 Dist MinGW Ninja",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Dist"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_clang_ninja_base",
+			"inherits": "windows_base",
+			"description": "Tagets Windows x86-64 using Clang and Ninja",
+			"generator": "Ninja",
+			"hidden": true,
+			"cacheVariables": {
+				"CMAKE_C_COMPILER": "clang",
+				"CMAKE_CXX_COMPILER": "clang++"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_debug_clang_ninja",
+			"inherits": "windows_x86-64_clang_ninja_base",
+			"description": "Tagets Windows x86-64(Debug) using Clang and Ninja",
+			"displayName": "Windows x86-64 Debug Clang Ninja",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Debug"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_release_clang_ninja",
+			"inherits": "windows_x86-64_clang_ninja_base",
+			"description": "Tagets Windows x86-64(Release) using Clang and Ninja",
+			"displayName": "Windows x86-64 Release Clang Ninja",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Release"
+			}
+		},
+
+		{
+			"name": "windows_x86-64_dist_clang_ninja",
+			"inherits": "windows_x86-64_clang_ninja_base",
+			"description": "Tagets Windows x86-64(Distribution) using Clang and Ninja",
+			"displayName": "Windows x86-64 Dist Clang Ninja",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Dist"
+			}
+		}
+
+	]
+}

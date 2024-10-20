@@ -1,0 +1,216 @@
+{
+	"version": 8,
+	"cmakeMinimumRequired": {
+		"major": 3,
+		"minor": 26,
+		"patch": 0
+	},
+
+	"include": [
+
+	],
+
+	"configurePresets": [
+		{
+			"name": "linux_base",
+			"description": "Target Linux, Also sets the path when remote connecting to Visual Studio",
+			"hidden": true,
+			"binaryDir": "${sourceDir}/build",
+			"installDir": "${sourceDir}/install",
+			"condition": {
+				"type": "equals",
+				"lhs": "${hostSystemName}",
+				"rhs": "Linux"
+			},
+			"vendor": {
+				"microsoft.com/VisualStudioSettings/CMake/1.0": {
+					"hostOS": [ "Linux" ]
+				},
+				"microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+					"sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
+				}
+			}
+		},
+
+		{
+			"name": "linux_x86-64_gcc_makefiles_base",
+			"inherits": "linux_base",
+			"description": "Tagets Linux x86-64 using GCC and Makefiles",
+			"generator": "Unix Makefiles",
+			"hidden": true,
+			"cacheVariables": {
+				"CMAKE_C_COMPILER": "gcc",
+				"CMAKE_CXX_COMPILER": "g++"
+			}
+		},
+
+		{
+			"name": "linux_x86-64_debug_gcc_makefiles",
+			"inherits": "linux_x86-64_gcc_makefiles_base",
+			"description": "Tagets Linux x86-64(Debug) using GCC and Makefiles",
+			"displayName": "Linux x86-64 Debug GCC Makefiles",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Debug"
+			}
+		},
+
+		{
+			"name": "linux_x86-64_release_gcc_makefiles",
+			"inherits": "linux_x86-64_gcc_makefiles_base",
+			"description": "Tagets Linux x86-64(Release) using GCC and Makefiles",
+			"displayName": "Linux x86-64 Release GCC Makefiles",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Release"
+			}
+		},
+
+		{
+			"name": "linux_x86-64_dist_gcc_makefiles",
+			"inherits": "linux_x86-64_gcc_makefiles_base",
+			"description": "Tagets Linux x86-64(Distribution) using GCC and Makefiles",
+			"displayName": "Linux x86-64 Dist GCC Makefiles",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Dist"
+			}
+		},
+
+		{
+			"name": "linux_x86-64_clang_makefiles_base",
+			"inherits": "linux_base",
+			"description": "Tagets Linux x86-64 using Clang and Makefiles",
+			"generator":  "Unix Makefiles",
+			"hidden": true,
+			"cacheVariables": {
+				"CMAKE_C_COMPILER": "clang",
+				"CMAKE_CXX_COMPILER": "clang++"
+			}
+		},
+
+		{
+			"name": "linux_x86-64_debug_clang_makefiles",
+			"inherits": "linux_x86-64_clang_makefiles_base",
+			"description": "Tagets Linux x86-64(Debug) using Clang and Makefiles",
+			"displayName": "Linux x86-64 Debug Clang Makefiles",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Debug"
+			}
+		},
+
+		{
+			"name": "linux_x86-64_release_clang_makefiles",
+			"inherits": "linux_x86-64_clang_makefiles_base",
+			"description": "Tagets Linux x86-64(Release) using Clang and Makefiles",
+			"displayName": "Linux x86-64 Release Clang Makefiles",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Release"
+			}
+		},
+
+		{
+			"name": "linux_x86-64_dist_clang_makefiles",
+			"inherits": "linux_x86-64_clang_makefiles_base",
+			"description": "Tagets Linux x86-64(Distribution) using Clang and Makefiles",
+			"displayName": "Linux x86-64 Dist Clang Makefiles",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Dist"
+			}
+		},
+
+		{
+			"name": "linux_x86-64_gcc_ninja_base",
+			"inherits": "linux_base",
+			"description": "Tagets Linux x86-64 using GCC and Ninja",
+			"generator": "Ninja",
+			"hidden": true,
+			"cacheVariables": {
+				"CMAKE_C_COMPILER": "gcc",
+				"CMAKE_CXX_COMPILER": "g++"
+			}
+		},
+
+		{
+			"name": "linux_x86-64_debug_gcc_ninja",
+			"inherits": "linux_x86-64_gcc_ninja_base",
+			"description": "Tagets Linux x86-64(Debug) using GCC and Ninja",
+			"displayName": "Linux x86-64 Debug GCC Ninja",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Debug"
+			}
+		},
+
+		{
+			"name": "linux_x86-64_release_gcc_ninja",
+			"inherits": "linux_x86-64_gcc_ninja_base",
+			"description": "Tagets Linux x86-64(Release) using GCC and Ninja",
+			"displayName": "Linux x86-64 Release GCC Ninja",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Release"
+			}
+		},
+
+		{
+			"name": "linux_x86-64_dist_gcc_ninja",
+			"inherits": "linux_x86-64_gcc_ninja_base",
+			"description": "Tagets Linux x86-64(Distribution) using GCC and Ninja",
+			"displayName": "Linux x86-64 Dist GCC Ninja",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Dist"
+			}
+		},
+
+		{
+			"name": "linux_x86-64_clang_ninja_base",
+			"inherits": "linux_base",
+			"description": "Tagets Linux x86-64 using Clang and Ninja",
+			"generator": "Ninja",
+			"hidden": true,
+			"cacheVariables": {
+				"CMAKE_C_COMPILER": "clang",
+				"CMAKE_CXX_COMPILER": "clang++"
+			}
+		},
+
+		{
+			"name": "linux_x86-64_debug_clang_ninja",
+			"inherits": "linux_x86-64_clang_ninja_base",
+			"description": "Tagets Linux x86-64(Debug) using Clang and Ninja",
+			"displayName": "Linux x86-64 Debug Clang Ninja",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Debug"
+			}
+		},
+
+		{
+			"name": "linux_x86-64_release_clang_ninja",
+			"inherits": "linux_x86-64_clang_ninja_base",
+			"description": "Tagets Linux x86-64(Release) using Clang and Ninja",
+			"displayName": "Linux x86-64 Release Clang Ninja",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Release"
+			}
+		},
+
+		{
+			"name": "linux_x86-64_dist_clang_ninja",
+			"inherits": "linux_x86-64_clang_ninja_base",
+			"description": "Tagets Linux x86-64(Distribution) using Clang and Ninja",
+			"displayName": "Linux x86-64 Dist Clang Ninja",
+			"hidden": false,
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Dist"
+			}
+		}
+
+	]
+}
