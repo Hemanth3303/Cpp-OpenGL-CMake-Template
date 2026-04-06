@@ -11,15 +11,15 @@ void handleInputs(GLFWwindow* window);
 void framebufferResizeCallback(GLFWwindow* window, int width, int height);
 
 int main() {
-#if defined(APP_DEBUG)
+#if defined(APPLICATION_DEBUG_BUILD)
 	std::cout << "Debug Build\n";
-#elif defined(APP_RELEASE)
-	std::cout << "Release Build\n";
-#elif defined(APP_DIST)
+#elif defined(APPLICATION_PROFILE_BUILD)
+	std::cout << "Profile Build\n";
+#elif defined(APPLICATION_RELEASE_BUILD)
 	std::cout << "Distribution Build\n";
 #else
 
-#endif 
+#endif
 	int width = 640, height = 480;
 	glfwInit();
 	glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
