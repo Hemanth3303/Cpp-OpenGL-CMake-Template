@@ -1,17 +1,12 @@
 ﻿{
 	"version": 8,
-	"cmakeMinimumRequired": {
-		"major": 3,
-		"minor": 26,
-		"patch": 0
-	},
 
 	"include": [
-		"cmake/presets/windows.json",
-		"cmake/presets/linux.json"
+		"cmake/base/presets/windows/windows.json",
+		"cmake/base/presets/linux/linux.json"
 	],
 
 	"configurePresets": [
-		
+
 	]
 }

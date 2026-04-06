@@ -1,3 +1,6 @@
 [submodule "vendor/glfw"]
 	path = vendor/glfw
 	url = https://github.com/glfw/glfw.git
+[submodule "cmake/base"]
+	path = cmake/base
+	url = https://github.com/Hemanth3303/cmake-base.git
