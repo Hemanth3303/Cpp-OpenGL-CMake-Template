@@ -2,6 +2,8 @@
 A template application for OpenGL and C++ using CMake
 
 ## Usage Example
+This template builds **GLFW** from source at `vendor/glfw`. For required development libraries and tools depending on your OS, see **[GLFW’s compile guide](https://www.glfw.org/docs/latest/compile.html)** and install what CMake reports as missing.
+
 First clone the repo recursively.
 
 ### Windows example
@@ -20,8 +22,6 @@ $ .\build\windows_x86-64\Debug\Application.exe
 ```
 
 ### Linux example
-
-This template builds **GLFW** from `vendor/glfw` with default **X11** and **Wayland** support. For required development libraries and tools depending on your distribution, see **[GLFW’s compile guide](https://www.glfw.org/docs/latest/compile.html)** and install what CMake reports as missing.
 
 Specify a generator manually like so:
 
