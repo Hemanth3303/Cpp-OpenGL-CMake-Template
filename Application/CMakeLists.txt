@@ -101,6 +101,21 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 			APPLICATION_PLATFORM_LINUX
 	)
 
+	if (TARGET OpenGL::OpenGL)
+        target_link_libraries(Application
+			PUBLIC
+				OpenGL::OpenGL
+			PRIVATE
+		)
+    else()
+        target_link_libraries(Application
+			PUBLIC
+				OpenGL::GL
+			PRIVATE
+
+		)
+    endif()
+
 	if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 		target_link_libraries(Application
 			PUBLIC
@@ -108,8 +123,6 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 				m
 				pthread
 			PRIVATE
-				OpenGL::OpenGL
-				X11
 		)
 		target_link_options(Application
 			PUBLIC
@@ -121,8 +134,6 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 			PUBLIC
 
 			PRIVATE
-				OpenGL::OpenGL
-				X11
 		)
 		target_link_options(Application
 			PUBLIC
