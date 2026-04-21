@@ -29,6 +29,9 @@ target_compile_definitions(glad
 		GLAD
 )
 
+cmake_base_target_platform_definitions(glad GLAD)
+cmake_base_target_architecture_definitions(glad GLAD)
+
 # PLATFORM AND COMPILER SPECIFIC
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
@@ -40,7 +43,6 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
 			NOMINMAX
 			_CRT_SECURE_NO_WARNINGS
 			WIN32_LEAN_AND_MEAN
-			GLAD_PLATFORM_WINDOWS
 	)
 
 	if(MSVC)
@@ -81,13 +83,6 @@ endif()
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 
-	target_compile_definitions(glad
-		PUBLIC
-
-		PRIVATE
-			GLAD_PLATFORM_LINUX
-	)
-
 	if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 		target_link_libraries(glad
 			PUBLIC
@@ -117,17 +112,6 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 
 		)
 	endif()
-
-endif()
-
-if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-
-	target_compile_definitions(glad
-		PUBLIC
-
-		PRIVATE
-			GLAD_PLATFORM_OSX
-	)
 
 endif()
 
