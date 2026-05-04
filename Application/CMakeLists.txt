@@ -88,7 +88,6 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
 
 			PRIVATE
 				-static
-				-static-libstdc++
 		)
 	endif()
 
