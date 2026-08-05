@@ -1,6 +1,9 @@
 # Cpp-OpenGL-CMake-Template
 A template application for OpenGL and C++ using CMake
 
+## Note
+ASAN and UBSAN (if available) are enabled for Application in debug build in this template example.
+
 ## Usage Example
 This template builds **GLFW** from source at `vendor/glfw`. For required development libraries and tools depending on your OS, see **[GLFW’s compile guide](https://www.glfw.org/docs/latest/compile.html)** and install what CMake reports as missing.
 
