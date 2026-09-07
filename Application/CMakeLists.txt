@@ -33,7 +33,9 @@ target_link_libraries(Application
 
 target_compile_definitions(Application
 	PUBLIC
-
+		# this allows to use include glad and glfw in any order.
+		# without this, glad must always be included before glfw
+		GLFW_INCLUDE_NONE
 	PRIVATE
 		APPLICATION
 )
