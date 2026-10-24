@@ -29,105 +29,18 @@ target_compile_definitions(glad
 		GLAD
 )
 
-cmake_base_target_platform_definitions(glad GLAD)
-cmake_base_target_architecture_definitions(glad GLAD)
+cmake_base_configure_target(glad)
+cmake_base_apply_target_definitions(glad GLAD)
+cmake_base_apply_os_definitions_to_target(glad GLAD)
+cmake_base_apply_architecture_definitions_to_target(glad GLAD)
+cmake_base_apply_compiler_definitions_to_target(glad GLAD)
 
-# PLATFORM AND COMPILER SPECIFIC
-
-if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-
-	target_compile_definitions(glad
-		PUBLIC
-
-		PRIVATE
-			NOMINMAX
-			_CRT_SECURE_NO_WARNINGS
-			WIN32_LEAN_AND_MEAN
-	)
-
-	if(MSVC)
-		target_compile_options(glad
-			PUBLIC
-
-			PRIVATE
-				/Zc:__cplusplus
-				/Zc:preprocessor
-		)
-	elseif(MINGW)
-		target_link_libraries(glad
-			PUBLIC
-				m
-			PRIVATE
-
-		)
-		target_link_options(glad
-			PUBLIC
-
-			PRIVATE
-				-static-libgcc
-				-static-libstdc++
-		)
-	elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-		target_link_libraries(glad
-			PUBLIC
-
-			PRIVATE
-		)
-		target_link_options(glad
-			PUBLIC
-
-			PRIVATE
-		)
-	endif()
-
-endif()
-
-if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-
-	if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-		target_link_libraries(glad
-			PUBLIC
-				dl
-				m
-				pthread
-			PRIVATE
-
-		)
-		target_link_options(glad
-			PUBLIC
-
-			PRIVATE
-
-		)
-	elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-		target_link_libraries(glad
-			PUBLIC
-
-			PRIVATE
-
-		)
-		target_link_options(glad
-			PUBLIC
-
-			PRIVATE
-
-		)
-	endif()
-
-endif()
-
-# CONFIGURATION SPECIFIC
-
-target_compile_definitions(glad
-	PUBLIC
-
-	PRIVATE
-		$<$<CONFIG:Debug>:GLAD_DEBUG_BUILD>
-		$<$<CONFIG:Debug>:DEBUG>
-
-		$<$<CONFIG:Profile>:GLAD_PROFILE_BUILD>
-		$<$<CONFIG:Profile>:NDEBUG>
-
-		$<$<CONFIG:Release>:GLAD_RELEASE_BUILD>
-		$<$<CONFIG:Release>:NDEBUG>
+# Note to future self:
+# include/ means copy contents of src to include/
+# if just include, then it will copy to include/include
+install(
+	DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/"
+	DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+	FILES_MATCHING
+		PATTERN "*.h"
 )

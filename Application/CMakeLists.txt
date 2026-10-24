@@ -36,110 +36,43 @@ target_compile_definitions(Application
 		# this allows to use include glad and glfw in any order.
 		# without this, glad must always be included before glfw
 		GLFW_INCLUDE_NONE
-	PRIVATE
-		APPLICATION
 )
 
-cmake_base_target_platform_definitions(Application APPLICATION)
-cmake_base_target_architecture_definitions(Application APPLICATION)
+cmake_base_configure_target(Application)
+cmake_base_apply_target_definitions(Application APPLICATION)
+cmake_base_apply_os_definitions_to_target(Application APPLICATION)
+cmake_base_apply_architecture_definitions_to_target(Application APPLICATION)
+cmake_base_apply_compiler_definitions_to_target(Application APPLICATION)
 cmake_base_apply_sanitizers(Application SANITIZERS ASAN UBSAN CONFIGS Debug)
 
 # PLATFORM AND COMPILER SPECIFIC
-
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-
-	target_compile_definitions(Application
-		PUBLIC
-
-		PRIVATE
-			NOMINMAX
-			_CRT_SECURE_NO_WARNINGS
-			WIN32_LEAN_AND_MEAN
-	)
-
-	if(MSVC)
-		target_compile_options(Application
-			PUBLIC
-
-			PRIVATE
-				/Zc:__cplusplus
-				/Zc:preprocessor
-		)
-	elseif(MINGW)
+	if(MINGW)
 		target_link_libraries(Application
-			PUBLIC
-				m
 			PRIVATE
 				OpenGL::GL
-		)
-		target_link_options(Application
-			PUBLIC
-
-			PRIVATE
-				-static
-				-static-libgcc
-				-static-libstdc++
 		)
 	elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 		target_link_libraries(Application
-			PUBLIC
-
 			PRIVATE
 				OpenGL::GL
-		)
-		target_link_options(Application
-			PUBLIC
-
-			PRIVATE
-				-static
 		)
 	endif()
 
 endif()
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-
 	if (TARGET OpenGL::OpenGL)
         target_link_libraries(Application
 			PUBLIC
 				OpenGL::OpenGL
-			PRIVATE
 		)
     else()
         target_link_libraries(Application
 			PUBLIC
 				OpenGL::GL
-			PRIVATE
-
 		)
     endif()
-
-	if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-		target_link_libraries(Application
-			PUBLIC
-				dl
-				m
-				pthread
-			PRIVATE
-		)
-		target_link_options(Application
-			PUBLIC
-
-			PRIVATE
-		)
-	elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-		target_link_libraries(Application
-			PUBLIC
-
-			PRIVATE
-		)
-		target_link_options(Application
-			PUBLIC
-
-			PRIVATE
-		)
-	endif()
-
 endif()
 
 if(MSVC)
@@ -149,28 +82,21 @@ if(MSVC)
 	)
 endif()
 
-# CONFIGURATION SPECIFIC
-
-target_compile_definitions(Application
-	PUBLIC
-
-	PRIVATE
-		$<$<CONFIG:Debug>:APPLICATION_DEBUG_BUILD>
-		$<$<CONFIG:Debug>:DEBUG>
-
-		$<$<CONFIG:Profile>:APPLICATION_PROFILE_BUILD>
-		$<$<CONFIG:Profile>:NDEBUG>
-
-		$<$<CONFIG:Release>:APPLICATION_RELEASE_BUILD>
-		$<$<CONFIG:Release>:NDEBUG>
-)
-
 # POST-BUILD RESOURCE COPY
-
 add_custom_command(
 	TARGET Application POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy_directory
 		"${CMAKE_CURRENT_SOURCE_DIR}/res"
 		"$<TARGET_FILE_DIR:Application>/res"
 	COMMENT "Copying resource folder to binary directory"
+)
+
+# adding res to install
+# cmake-base already handles bin, lib and include
+# Note to future self:
+# res/ means copy contents of res to bin/res
+# if just res, then it will copy to bin/res/res
+install(
+	DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/res/"
+    DESTINATION bin/res
 )
