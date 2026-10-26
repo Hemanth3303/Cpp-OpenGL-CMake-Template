@@ -22,13 +22,6 @@ target_include_directories(glad
 
 )
 
-target_compile_definitions(glad
-	PUBLIC
-
-	PRIVATE
-		GLAD
-)
-
 cmake_base_configure_target(glad)
 cmake_base_apply_target_definitions(glad GLAD)
 cmake_base_apply_os_definitions_to_target(glad GLAD)
